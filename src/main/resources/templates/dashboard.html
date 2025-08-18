@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FormUp! - Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="dashboard-container">
+    <header class="dashboard-header">
+        <img src="/ChatGPT%20Image%2012.08.2025%20o%2017_36_10.png" alt="FormUp! Logo" class="logo" />
+        <nav class="dashboard-nav">
+            <a th:if="${session.user != null}" class="nav-btn">Treningi</a>
+            <a th:if="${session.user != null}" class="nav-btn">Profil użytkownika</a>
+            <a th:if="${session.user != null}" href="/logout" class="nav-btn logout">Wyloguj</a>
+        </nav>
+    </header>
+
+    <main class="dashboard-content">
+        <h1>Witaj w FormUp!</h1>
+        <p>Wybierz jedną z opcji powyżej, aby rozpocząć.</p>
+    </main>
+</div>
+</body>
+</html>

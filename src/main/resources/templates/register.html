@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rejestracja - FormUp!</title>
+    <link rel="stylesheet" href="register.css">
+</head>
+<body>
+<div class="register-container">
+    <div class="logo">
+        <img src="/ChatGPT%20Image%2012.08.2025%20o%2017_36_10.png" alt="FormUp! Logo">
+    </div>
+    <h2>Załóż konto</h2>
+    <form method="post" onsubmit="return validateRegisterForm()">
+        <input th:field="*{userObject.login}" type="text" name="login" placeholder="Login" required>
+        <input th:field="*{userObject.password}" type="password" name="password" placeholder="Hasło" required>
+        <input type="password" name="password2" placeholder="Potwierdź hasło" required>
+        <input th:field="*{userObject.name}" type="text" name="name" placeholder="Imię" required>
+        <input th:field="*{userObject.surname}" type="text" name="surname" placeholder="Nazwisko" required>
+        <input th:field="*{userObject.email}" type="email" name="email" placeholder="E-mail" required>
+        <button type="submit">Zarejestruj się</button>
+    </form>
+    <p class="login-link">Masz już konto? <a href="/login">Zaloguj się</a></p>
+</div>
+</body>
+</html>
