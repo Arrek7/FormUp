@@ -22,6 +22,10 @@ public class User {
     private String name;
     private String surname;
     private String email;
+    private Integer age;
+    private Double height;
+    private Double weight;
+
     @Enumerated(EnumType.STRING)
     @Column(columnDefinition = "varchar(10)")
     private Role role;

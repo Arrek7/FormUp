@@ -34,7 +34,7 @@ public class AuthenticationController {
         } catch (UserValidationException | LoginAlreadyExistException e) {
             return "redirect:/register";
         }
-        return "redirect:/dashboard";
+        return "redirect:/login";
     }
 
     @GetMapping("/login")

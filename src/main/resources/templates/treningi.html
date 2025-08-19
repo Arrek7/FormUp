@@ -1,10 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl" xmlns:th="https://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FormUp! - Treningi</title>
+    <link rel="stylesheet" href="/dashboard.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
+<div class="dashboard-container">
+    <header class="dashboard-header">
+        <div class="welcome-section">
+            <span class="welcome-text">Witaj w</span>
+            <img src="/ChatGPT%20Image%2012.08.2025%20o%2017_36_10.png" alt="FormUp! Logo" class="logo" />
+        </div>
+        <nav class="dashboard-nav">
+            <a href="/dashboard" class="nav-btn">Dashboard</a>
+            <a href="/trening" class="nav-btn">Nowy trening</a>
+        </nav>
+    </header>
 
+    <main class="dashboard-content">
+        <h1>Twoje treningi</h1>
+        <div class="trainings-section">
+            <table class="trainings-table" th:if="${trainings != null and #lists.size(trainings) > 0}">
+                <thead>
+                    <tr>
+                        <th>Nazwa treningu</th>
+                        <th>Liczba ćwiczeń</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="trening : ${trainings}">
+                        <td th:text="${trening.name}">Nazwa</td>
+                        <td th:text="${#lists.size(trening.exercises)}">0</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div th:if="${trainings == null or #lists.isEmpty(trainings)}" class="no-trainings">
+                <p>Brak odbytych treningów.</p>
+            </div>
+        </div>
+    </main>
+</div>
 </body>
 </html>

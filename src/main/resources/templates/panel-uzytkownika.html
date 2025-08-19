@@ -1,10 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FormUp! - Panel użytkownika</title>
+    <link rel="stylesheet" href="/panel-uzytkownika.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
+<div class="dashboard-container">
+    <header class="dashboard-header">
+        <img src="/ChatGPT%20Image%2012.08.2025%20o%2017_36_10.png" alt="FormUp! Logo" class="logo" />
+        <h1 class="page-title">Panel użytkownika</h1>
+        <nav class="dashboard-nav">
+            <a th:if="${session.user != null}" href="/dashboard" class="nav-btn">Dashboard</a>
+            <a th:if="${session.user != null}" href="/logout" class="nav-btn logout">Wyloguj</a>
+        </nav>
+    </header>
 
+    <main class="dashboard-content">
+
+        <section class="profile-card">
+            <h2>Twoje dane</h2>
+            <form method="post" action="/panel-uzytkownika" class="profile-form">
+                <div class="profile-row">
+                    <label for="name">Imię</label>
+                    <input id="name" name="name" type="text" th:value="${session.user.name}" />
+                </div>
+                <div class="profile-row">
+                    <label for="surname">Nazwisko</label>
+                    <input id="surname" name="surname" type="text" th:value="${session.user.surname}" />
+                </div>
+                <div class="profile-row">
+                    <label for="age">Wiek</label>
+                    <input id="age" name="age" type="number" min="0" step="1" th:value="${session.user.age}" />
+                </div>
+                <div class="profile-row">
+                    <label for="email">E-mail</label>
+                    <input id="email" name="email" type="email" th:value="${session.user.email}" />
+                </div>
+                <div class="profile-row">
+                    <label for="height">Wzrost (cm)</label>
+                    <input id="height" name="height" type="number" min="0" step="0.1" th:value="${session.user.height}" />
+                </div>
+                <div class="profile-row">
+                    <label for="weight">Waga (kg)</label>
+                    <input id="weight" name="weight" type="number" min="0" step="0.1" th:value="${session.user.weight}" />
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="nav-btn">Zapisz</button>
+                </div>
+            </form>
+        </section>
+    </main>
+</div>
 </body>
 </html>
