@@ -12,6 +12,11 @@ import org.springframework.context.annotation.Configuration;
 public class AppConfiguration {
 
     @Bean
+    public SessionFactory sessionFactory() {
+        return new org.hibernate.cfg.Configuration().configure().buildSessionFactory();
+    }
+
+    @Bean
     public FilterRegistrationBean<LoginFilter> loginRegistrationBean(LoginFilter loginFilter) {
         FilterRegistrationBean<LoginFilter> registrationBean = new FilterRegistrationBean<>();
         registrationBean.setFilter(loginFilter);
@@ -19,10 +24,5 @@ public class AppConfiguration {
                 "/login"
                 );
         return registrationBean;
-    }
-
-    @Bean
-    public SessionFactory sessionFactory() {
-        return new org.hibernate.cfg.Configuration().configure().buildSessionFactory();
     }
 }

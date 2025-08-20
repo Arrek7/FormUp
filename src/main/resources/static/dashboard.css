@@ -50,6 +50,16 @@ body {
   height: auto;
 }
 
+/* Styl dla tytułu w nagłówku */
+.page-title {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 600;
+  color: #0f1724;
+  flex: 1 1 auto;
+  text-align: center;
+}
+
 /* Responsywność: zmniejsz rozmiary na węższych ekranach */
 @media (max-width: 992px) {
   .welcome-text { font-size: 26px; }
@@ -120,10 +130,17 @@ body {
   color: #6b7280;
 }
 
-/* Style dla sekcji BMI */
-.bmi-section {
-  max-width: 640px;
+/* Wrapper dla widgetów dashboard */
+.dashboard-widgets {
+  display: flex;
+  gap: 30px;
+  max-width: 1200px;
   margin: 40px auto 0;
+}
+
+/* Style dla sekcji BMI - dostosowane do układu obok siebie */
+.bmi-section {
+  flex: 1;
   background: #fff;
   border-radius: 14px;
   box-shadow: 0 10px 30px rgba(12,34,60,0.08);
@@ -196,4 +213,133 @@ body {
 
 .bmi-missing a:hover {
   text-decoration: underline;
+}
+
+/* Style dla sekcji ostatniego treningu */
+.last-training-section {
+  flex: 1;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(12,34,60,0.08);
+  border: 1px solid rgba(15,37,64,0.04);
+  padding: 24px;
+  text-align: center;
+}
+
+.last-training-section h2 {
+  margin: 0 0 20px 0;
+  font-size: 24px;
+  color: #0f1724;
+  font-weight: 600;
+}
+
+.training-card {
+  background: linear-gradient(135deg, #f6f7fb 0%, #ffffff 100%);
+  border-radius: 12px;
+  padding: 30px 20px;
+  border: 1px solid rgba(15,37,64,0.04);
+}
+
+.training-name {
+  font-size: 28px;
+  font-weight: 700;
+  color: #0f1724;
+  margin-bottom: 15px;
+}
+
+.training-exercises {
+  margin-bottom: 20px;
+}
+
+.exercises-count {
+  font-size: 48px;
+  font-weight: 700;
+  color: #0f5fa8;
+  display: inline-block;
+}
+
+.exercises-label {
+  font-size: 20px;
+  color: #6b7280;
+  margin-left: 8px;
+}
+
+.training-info {
+  color: #6b7280;
+}
+
+.training-info small {
+  font-size: 14px;
+}
+
+.training-missing {
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 12px;
+  color: #6b7280;
+}
+
+.training-missing a {
+  color: #0f5fa8;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.training-missing a:hover {
+  text-decoration: underline;
+}
+
+/* Responsywność dla widgetów */
+@media (max-width: 768px) {
+  .dashboard-widgets {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+/* Style dla strony treningi */
+.trainings-section {
+  max-width: 800px;
+  margin: 40px auto 0;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(12,34,60,0.08);
+  border: 1px solid rgba(15,37,64,0.04);
+  padding: 24px;
+}
+
+.trainings-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.trainings-table th,
+.trainings-table td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid rgba(15,37,64,0.08);
+}
+
+.trainings-table th {
+  background: linear-gradient(135deg, #f6f7fb 0%, #ffffff 100%);
+  font-weight: 600;
+  color: #0f1724;
+  font-size: 16px;
+}
+
+.trainings-table td {
+  color: #0f1724;
+  font-size: 15px;
+}
+
+.trainings-table tr:hover {
+  background: rgba(15, 95, 168, 0.02);
+}
+
+.no-trainings {
+  text-align: center;
+  padding: 60px 20px;
+  color: #6b7280;
+  font-size: 18px;
 }

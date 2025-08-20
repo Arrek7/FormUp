@@ -24,10 +24,11 @@ body {
   margin-top: 20px;
   box-shadow: 0 10px 30px rgba(12,34,60,0.08);
   border: 1px solid rgba(15,37,64,0.04);
+  position: relative;
 }
 
 .logo {
-  width: 200px;
+  width: 220px;
   height: auto;
 }
 
@@ -137,4 +138,21 @@ body {
 .profile-row .value {
   font-weight: 600;
   color: #0f1724;
+}
+
+/* Sekcja powitalna na środku nagłówka */
+.welcome-section {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.welcome-text {
+  font-size: 32px;
+  font-weight: 700;
+  color: #0f1724;
+  white-space: nowrap;
 }

@@ -10,13 +10,11 @@
 <body>
 <div class="dashboard-container">
     <header class="dashboard-header">
-        <div class="welcome-section">
-            <span class="welcome-text">Witaj w</span>
-            <img src="/ChatGPT%20Image%2012.08.2025%20o%2017_36_10.png" alt="FormUp! Logo" class="logo" />
-        </div>
+        <img src="/ChatGPT%20Image%2012.08.2025%20o%2017_36_10.png" alt="FormUp! Logo" class="logo" />
+        <h1 class="page-title">Treningi</h1>
         <nav class="dashboard-nav">
-            <a href="/dashboard" class="nav-btn">Dashboard</a>
-            <a href="/trening" class="nav-btn">Nowy trening</a>
+            <a th:if="${session.user != null}" href="/dashboard" class="nav-btn">Dashboard</a>
+            <a th:if="${session.user != null}" href="/trening" class="nav-btn">Nowy trening</a>
         </nav>
     </header>
 

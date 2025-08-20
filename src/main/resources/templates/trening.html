@@ -1,10 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl" xmlns:th="https://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FormUp! - Nowy trening</title>
+    <link rel="stylesheet" href="/dashboard.css" />
+    <link rel="stylesheet" href="/trening.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
+<div class="dashboard-container">
+    <header class="dashboard-header">
+        <img src="/ChatGPT%20Image%2012.08.2025%20o%2017_36_10.png" alt="FormUp! Logo" class="logo" />
+        <h1 class="page-title">Nowy trening</h1>
+        <nav class="dashboard-nav">
+            <a th:if="${session.user != null}" href="/dashboard" class="nav-btn">Dashboard</a>
+            <a th:if="${session.user != null}" href="/treningi" class="nav-btn">Treningi</a>
+            <a th:if="${session.user != null}" href="/logout" class="nav-btn logout">Wyloguj</a>
+        </nav>
+    </header>
 
+    <main class="dashboard-content">
+        <form id="training-form" method="post" action="/trening">
+            <div class="training-editor">
+                <div class="training-name-row">
+                    <label for="training-name">Nazwa treningu</label>
+                    <input id="training-name" name="name" type="text" placeholder="Np. Klata + triceps" />
+                </div>
+
+                <div id="exercises-container" class="exercises-container"><!-- Karty ćwiczeń dodawane dynamicznie --></div>
+
+                <!-- Kontener na ukryte inputy dla bindowania Spring -->
+                <div id="training-hidden-inputs" style="display:none"></div>
+
+                <div class="editor-actions">
+                    <button id="add-exercise-name-btn" class="nav-btn" type="button">Dodaj nazwę ćwiczenia</button>
+                    <button id="add-exercise-btn" class="nav-btn" type="button">Dodaj ćwiczenie</button>
+                    <button id="save-training-btn" class="nav-btn" type="submit">Zapisz trening</button>
+                </div>
+            </div>
+        </form>
+    </main>
+</div>
+
+<!-- Modal dodawania nowej nazwy ćwiczenia -->
+<div id="add-exercise-modal" class="modal hidden" aria-hidden="true" role="dialog">
+  <div class="modal-content" role="document">
+    <h3>Dodaj nowe ćwiczenie</h3>
+    <input id="new-exercise-name" type="text" placeholder="Np. Wyciskanie hantli na skosie" />
+    <div class="modal-actions">
+      <button id="confirm-add-exercise" type="button" class="nav-btn">Dodaj</button>
+      <button id="cancel-add-exercise" type="button" class="nav-btn logout">Anuluj</button>
+    </div>
+  </div>
+</div>
+
+<script th:inline="javascript">window.EXERCISE_NAMES = /*[[${exerciseNames}]]*/ [];</script>
+<script src="/trening.js" defer></script>
 </body>
 </html>

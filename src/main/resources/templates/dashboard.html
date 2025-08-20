@@ -10,11 +10,8 @@
 <body>
 <div class="dashboard-container">
     <header class="dashboard-header">
-        <div class="welcome-section">
-            <span class="welcome-text">Witaj w</span>
-            <img src="/ChatGPT%20Image%2012.08.2025%20o%2017_36_10.png" alt="FormUp! Logo" class="logo" />
-
-        </div>
+        <img src="/ChatGPT%20Image%2012.08.2025%20o%2017_36_10.png" alt="FormUp! Logo" class="logo" />
+        <h1 class="page-title">Dashboard</h1>
         <nav class="dashboard-nav">
             <a th:if="${session.user != null}" href="/treningi" class="nav-btn">Treningi</a>
             <a th:if="${session.user != null}" href="/panel-uzytkownika" class="nav-btn">Profil użytkownika</a>
@@ -22,21 +19,40 @@
         </nav>
     </header>
 
-    <div th:if="${session.user != null}" class="bmi-section">
-        <h2>Twoje BMI</h2>
-        <div th:if="${bmi != null}" class="bmi-card">
-            <div class="bmi-value">
-                <span class="bmi-number" th:text="${#numbers.formatDecimal(bmi, 1, 1)}">22.5</span>
-                <span class="bmi-unit">kg/m²</span>
+    <div th:if="${session.user != null}" class="dashboard-widgets">
+        <div class="bmi-section">
+            <h2>Twoje BMI</h2>
+            <div th:if="${bmi != null}" class="bmi-card">
+                <div class="bmi-value">
+                    <span class="bmi-number" th:text="${#numbers.formatDecimal(bmi, 1, 1)}">22.5</span>
+                    <span class="bmi-unit">kg/m²</span>
+                </div>
+                <div class="bmi-category" th:text="${bmiCategory}">Waga prawidłowa</div>
+                <div class="bmi-info">
+                    <small>Wzrost: <span th:text="${session.user.height}">170</span> cm</small>
+                    <small>Waga: <span th:text="${session.user.weight}">70</span> kg</small>
+                </div>
             </div>
-            <div class="bmi-category" th:text="${bmiCategory}">Waga prawidłowa</div>
-            <div class="bmi-info">
-                <small>Wzrost: <span th:text="${session.user.height}">170</span> cm</small>
-                <small>Waga: <span th:text="${session.user.weight}">70</span> kg</small>
+            <div th:if="${bmi == null}" class="bmi-missing">
+                <p>Aby obliczyć BMI, uzupełnij wzrost i wagę w <a href="/panel-uzytkownika">profilu użytkownika</a>.</p>
             </div>
         </div>
-        <div th:if="${bmi == null}" class="bmi-missing">
-            <p>Aby obliczyć BMI, uzupełnij wzrost i wagę w <a href="/panel-uzytkownika">profilu użytkownika</a>.</p>
+
+        <div class="last-training-section">
+            <h2>Ostatni trening</h2>
+            <div th:if="${lastTraining != null}" class="training-card">
+                <div class="training-name" th:text="${lastTraining.name}">Trening siłowy</div>
+                <div class="training-exercises">
+                    <span class="exercises-count" th:text="${#lists.size(lastTraining.exercises)}">5</span>
+                    <span class="exercises-label">ćwiczeń</span>
+                </div>
+                <div class="training-info">
+                    <small>Data: dziś</small>
+                </div>
+            </div>
+            <div th:if="${lastTraining == null}" class="training-missing">
+                <p>Brak treningów. <a href="/trening">Dodaj pierwszy trening</a>!</p>
+            </div>
         </div>
     </div>
 

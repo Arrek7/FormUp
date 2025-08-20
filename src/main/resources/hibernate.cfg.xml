@@ -18,5 +18,6 @@
         <mapping class="com.comarch.szkolenia.FormUp.model.User"/>
         <mapping class="com.comarch.szkolenia.FormUp.model.Trening"/>
         <mapping class="com.comarch.szkolenia.FormUp.model.Exercise"/>
+        <mapping class="com.comarch.szkolenia.FormUp.model.ExerciseSet"/>
     </session-factory>
 </hibernate-configuration>
