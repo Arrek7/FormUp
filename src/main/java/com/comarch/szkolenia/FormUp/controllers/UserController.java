@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Optional;
 
@@ -46,6 +47,28 @@ public class UserController {
         );
 
         updated.ifPresent(u -> session.setAttribute("user", u));
+        return "redirect:/panel-uzytkownika";
+    }
+
+    @PostMapping("/panel-uzytkownika/zmien-haslo")
+    public String changePassword(@RequestParam(required = false) String newPassword,
+                                 @RequestParam(required = false, name = "confirmPassword") String confirmPassword,
+                                 HttpSession session,
+                                 RedirectAttributes redirectAttributes) {
+        User current = (User) session.getAttribute("user");
+        if (current == null) {
+            return "redirect:/login";
+        }
+        if (newPassword == null || newPassword.trim().isEmpty()) {
+            redirectAttributes.addFlashAttribute("pwdErr", "Hasło nie może być puste");
+            return "redirect:/panel-uzytkownika";
+        }
+        if (!newPassword.equals(confirmPassword)) {
+            redirectAttributes.addFlashAttribute("pwdErr", "Hasła się nie zgadzają");
+            return "redirect:/panel-uzytkownika";
+        }
+        userService.changePassword(current.getId(), newPassword.trim());
+        redirectAttributes.addFlashAttribute("pwdOk", "Hasło zostało zmienione");
         return "redirect:/panel-uzytkownika";
     }
 }

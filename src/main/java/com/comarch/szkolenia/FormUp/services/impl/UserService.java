@@ -10,7 +10,9 @@ import com.comarch.szkolenia.FormUp.model.User;
 import com.comarch.szkolenia.FormUp.services.IUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.util.DigestUtils;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -44,7 +46,8 @@ public class UserService implements IUserService {
         Optional<User> userOpt = userDAO.getById(userId);
         if (userOpt.isPresent()) {
             User user = userOpt.get();
-            user.setPassword(newPassword);
+            String hashed = DigestUtils.md5DigestAsHex(newPassword.trim().getBytes());
+            user.setPassword(hashed);
             userDAO.merge(user);
         }
     }
@@ -110,6 +113,9 @@ public class UserService implements IUserService {
         Trening trening = new Trening();
         trening.setName(form.getName() != null ? form.getName().trim() : "");
         trening.setUser(user);
+        if (trening.getCreatedAt() == null) {
+            trening.setCreatedAt(LocalDateTime.now());
+        }
 
         List<Exercise> exerciseEntities = new ArrayList<>();
         if (form.getExercises() != null) {

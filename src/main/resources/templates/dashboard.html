@@ -42,12 +42,19 @@
             <h2>Ostatni trening</h2>
             <div th:if="${lastTraining != null}" class="training-card">
                 <div class="training-name" th:text="${lastTraining.name}">Trening siłowy</div>
-                <div class="training-exercises">
-                    <span class="exercises-count" th:text="${#lists.size(lastTraining.exercises)}">5</span>
-                    <span class="exercises-label">ćwiczeń</span>
+                <div class="training-exercises" th:with="count=${#lists.size(lastTraining.exercises)}">
+                    <span class="exercises-count" th:text="${count}">5</span>
+                    <span class="exercises-label"
+                          th:text="${count == 1 ? 'ćwiczenie' : ((count % 10 >= 2 && count % 10 <= 4)
+                          && (count % 100 < 12 || count % 100 > 14) ? 'ćwiczenia' : 'ćwiczeń')}">ćwiczeń</span>
                 </div>
                 <div class="training-info">
-                    <small>Data: dziś</small>
+                    <small>
+                        Data:
+                        <span th:text="${lastTraining.createdAt != null ?
+                        T(java.time.format.DateTimeFormatter).ofPattern('dd-MM-yyyy').format(lastTraining.createdAt) : 'brak danych'}"
+                        >brak danych</span>
+                    </small>
                 </div>
             </div>
             <div th:if="${lastTraining == null}" class="training-missing">

@@ -52,7 +52,27 @@
                 </div>
             </form>
         </section>
+
+        <section class="profile-card">
+            <h2>Zmień hasło</h2>
+            <div id="flash-data" th:attr="data-pwderr=${pwdErr}, data-pwdok=${pwdOk}" style="display:none"></div>
+            <form method="post" action="/panel-uzytkownika/zmien-haslo" class="profile-form">
+                <div class="profile-row">
+                    <label for="newPassword">Nowe hasło</label>
+                    <input id="newPassword" name="newPassword" type="password" required />
+                </div>
+                <div class="profile-row">
+                    <label for="confirmPassword">Powtórz hasło</label>
+                    <input id="confirmPassword" name="confirmPassword" type="password" required />
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="nav-btn">Zmień hasło</button>
+                </div>
+            </form>
+        </section>
     </main>
 </div>
+
+<script src="/panel-uzytkownika.js"></script>
 </body>
 </html>

@@ -26,12 +26,18 @@
                     <tr>
                         <th>Nazwa treningu</th>
                         <th>Liczba ćwiczeń</th>
+                        <th>Data</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr th:each="trening : ${trainings}">
                         <td th:text="${trening.name}">Nazwa</td>
                         <td th:text="${#lists.size(trening.exercises)}">0</td>
+                        <td>
+                            <span th:text="${trening.createdAt != null ?
+                            T(java.time.format.DateTimeFormatter).ofPattern('dd-MM-yyyy').format(trening.createdAt) : 'brak danych'}"
+                            >brak danych</span>
+                        </td>
                     </tr>
                 </tbody>
             </table>

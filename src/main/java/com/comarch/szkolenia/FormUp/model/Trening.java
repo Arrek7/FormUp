@@ -3,6 +3,7 @@ package com.comarch.szkolenia.FormUp.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,4 +23,5 @@ public class Trening {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+    private LocalDateTime createdAt;
 }

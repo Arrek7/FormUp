@@ -19,7 +19,7 @@ public class TreningDAO implements ITreningDAO {
     public List<Trening> findByUserId(int userId) {
         try (Session session = sessionFactory.openSession()) {
             return session.createQuery(
-                            "SELECT t FROM ttrening t WHERE t.user.id = :userId", Trening.class)
+                            "SELECT t FROM ttrening t WHERE t.user.id = :userId ORDER BY t.createdAt ASC, t.id ASC", Trening.class)
                     .setParameter("userId", userId)
                     .getResultList();
         }
